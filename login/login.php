@@ -48,5 +48,18 @@ require "../connect.php";
 if(isset($_POST['submit'])){
     $user = $_POST['username'];
     $pass = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";
+    $result = $pdo->query($query);
+    if ($result->rowCount() == 1) 
+    {
+        header('Location: ../home/home.php');
+    } 
+    else 
+    {
+        echo '
+            <h1 style="color: white; position: absolute; top: 0;">Wrong Login<h1>
+        ';
+    }
 }
 ?>
